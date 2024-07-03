@@ -1,0 +1,67 @@
+1)
+For DELETION the folder
+if folder is empty then => rm folder
+if folder having some file then => rm -rf folername
+
+2)
+For DELETION the FILE
+file then => rm new.txt
+
+3)
+for CUT and past FILE(not delete)
+for moving the file
+command       source      destination
+mv 				d.txt	 newfolder
+
+4)
+For COPY the FILE 
+command 		source 		destination
+cp 				d.txt		newfolder
+
+5) 
+For COPY the FOLDER 
+command 		source 		destination
+cp 		-r		snews		newfolder
+
+6)
+cd => for going back to root in one step 
+cd.. => for going back to root step by step
+
+7) 
+For finding the text FILE basic on extention
+* for all files
+find -name "*.txt"
+
+8)
+For creating the links
+SOFT LINK:
+Discription:
+if original file delete then the link also delete.(become red)
+
+Command:
+command 		file_name	 	link_name
+ln 	-s 			file.txt			f.txt
+
+HARD LINK:
+Discription:
+if the original file delete then the lnk will not remove/delete.
+if we write in the original file then the link file also updated by default.
+Command:
+command 		file_name		link_name
+ln				 file.txt 			 f.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

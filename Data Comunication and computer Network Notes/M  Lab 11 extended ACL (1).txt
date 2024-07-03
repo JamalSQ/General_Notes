@@ -1,0 +1,26 @@
+Apply filters on packets.
+
+Further services can also be filtered using 
+extended acl.
+
+configuring telnet on static routing topology and blocking its access through EACL.
+
+extended acl is configured near source and it is ingoing.
+
+
+Router CLI (configuration of telnet)
+
+line vty 0 ?
+line vty 0 15
+
+global to line config mode
+
+password xxxxxxxx 
+login 
+
+exit
+
+
+to access router enab mode
+enab secret (password)
+

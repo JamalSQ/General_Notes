@@ -1,0 +1,37 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <pthread.h>
+
+void *fun1(void *arg);
+void *fun2(void *arg);
+
+int main() {
+    pthread_t th1, th2;
+    int a = 0, b = 0;
+
+    pthread_create(&th1, NULL, fun1, (void *)&a);
+    pthread_create(&th2, NULL, fun2, (void *)&b);
+
+    pthread_join(th1, NULL);
+    pthread_join(th2, NULL);
+
+    return 0;
+}
+
+void *fun1(void *arg) {
+    int *a = (int *)arg;
+
+    for (*a = 0; *a < 5; (*a)++) {
+        printf("Fun1 With parameter %d\n", *a);
+    }
+
+}
+
+void *fun2(void *arg) {
+    int *b = (int *)arg;
+
+    for (*b = 0; *b < 5; (*b)++) {
+        printf("Fun2 With parameter %d\n", *b);
+    }
+
+}

@@ -1,0 +1,61 @@
+1)wc	file.txt							wc 		-l	file.txt	// for lines		
+* lines	*words		*size(bytes)		wc		-w	file.txt	// for words checking
+// for checking the file info				wc		-c     file.txt	// for checking the size
+
+2) nano    // linux editor
+program extension     .c
+ctrl+x		//exit
+ctrl+s		//save
+
+nano  program.c
+
+3) sort 	file.txt  
+ //for sorting the 
+
+
+4) rwx
+r		// read
+w		//write
+x		//execute
+
+rwx	//owner			//read,write,execute
+rw-		//group				//read,write
+r--		//all					//read
+
+
+5) Change the permission of the file
+command:
+chmod 555  file.txt
+first		 5		 //for owner
+second		5		//for group
+third		5		//for all/everyone else
+
+Commands list for changing permission
+0		no permission
+1		execute
+2		write
+3		write,execute
+4		read
+5		read,execute
+6		read,write
+7		read,write,execute
+
+
+6) for changing the name of the command
+alias os="ls -al"
+
+7) for printing in linux (on screen)
+echo "hello world"
+
+8)for writing into file without opening nano or going to window
+echo "text which you want to write">>file.txt
+
+9) For compressng the file
+
+gzip 	file.txt				//for compressing the file
+gzip  	-k	file.txt			//compressed the original file also generate a new copy of the file
+gzip  	-d	file.txt			//for decompressing the original file
+
+10) ls -al 		// for cheking the permission of rwx
+
+

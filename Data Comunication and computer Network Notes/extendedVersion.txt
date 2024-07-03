@@ -1,0 +1,75 @@
+
+					Extended Version
+
+
+
+
+Router>en
+Router#config
+Configuring from terminal, memory, or network [terminal]? 
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#line vty 0 15			//the range of devices that can be connected with the router is 0-16
+Router(config-line)#password xxxxxx		// xxx is password
+Router(config-line)#login
+Router(config-line)#exit
+Router(config)#enable secret xxxxxx
+Router(config)#exit
+
+
+
+Task#	
+		Deny the wholw network for the a router to access the telnet 
+		withcard and the network ID's will use 
+
+
+
+Solution:
+
+//Deny single PC
+
+Router(config)#access-list 101 deny tcp 192.168.1.0 0.0.0.255 20.0.0.2 0.255.255.255 eq telnet
+Router(config)#access-list 101 deny tcp 192.168.1.0 0.0.0.255 192.168.3.1 0.0.0.255 eq telnet
+Router(config)#access-list 101 permit ip any any 
+Router(config)#int fa0/0
+Router(config-if)#ip access-group 101 in
+Router(config-if)#exit
+Router(config)#
+
+
+
+
+//deny whole network
+
+Router(config)#access-list 101 deny tcp 192.168.2.0 0.0.0.255 192.168.3.4 0.0.0.255 eq 21
+Router(config)#
+Router(config)#access-list 101 deny tcp 192.168.2.0 0.0.0.255 192.168.3.4 0.0.0.255 eq 80
+Router(config)#access-list 101 permit ip any any
+Router(config)#
+Router(config)#int fa0/0
+Router(config-if)#
+Router(config-if)#ip access-group 101 in
+
+
+
+
+
+
+
+
+Router(config)#access-list 100 deny tcp host 192.168.1.2 host 20.0.0.2 eq telnet
+Router(config)#
+Router(config)#access-list 100 permit any
+                                       ^
+% Invalid input detected at '^' marker.
+	
+Router(config)#access-list 100 permit ip any any
+Router(config)#
+Router(config)#
+Router(config)#int fa0/0
+Router(config-if)#ip access-group 100 in
+Router(config-if)#
+
+
+
+//In extended inbound used near to source
+//In standard outbound used near to destination

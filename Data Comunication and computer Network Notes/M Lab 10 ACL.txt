@@ -1,0 +1,44 @@
+---------- Access Control List -----------
+
+standard and extended (types)
+
+Used to control any network, server or computer access wise.
+
+List contains rules for permission or denial.
+ACL is configured at router interfaces.
+
+Standard acl is configured on the basis of source device (address).
+
+Traffic flow (inbound (into network/router) or outbound (out of network/router))
+
+
+ACL is configured at router nearest to destination device.
+
+-confiugration-
+
+
+router CLI
+enab
+config t
+
+----------------- Creation of ACL -----------------
+
+access-list ?
+
+access-list 1 deny host 192.168.1.2 (source IP) // to deny single host
+
+deny 192.168.1.0 (Net ID) 0.0.0.255 (whitecard mask) // to deny whole network access
+
+(WhiteCard Mask) is inverse of SubNet Mask.
+
+access-list 1 ip permit  any any
+
+do sh access-list
+
+----------------- Binding ACL -----------------
+
+// binding list-access (either inbound/outbound)
+
+int fa0/0
+
+ip access-group 1 out

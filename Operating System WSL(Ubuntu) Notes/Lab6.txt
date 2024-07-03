@@ -1,0 +1,51 @@
+Process
+
+fork system call 
+
+=>why we use fok
+devide the parent process into child
+
+=>Fork()
+this return 3 values     
+<0    error
+>0    parent
+=0	child
+
+
+
+PROGRAMM
+#include<unistd.h>
+#include<sys/types.h>
+#include<stdio.h>
+
+int main(){
+pidt a,
+a= fork();
+
+if(a<0){
+printf("Has error");
+}
+else if(a==0){
+printf("this is child process id %d\n",getpid());			getpid  for calling the child process
+printf("this is parent process id  %d\n",getppid());			getppid  for calling the parent part
+
+}
+else if(a>0){
+printf("the parent process id  %d\n",getpid());			getpid  for calling the parent part
+printf("this is child process id  %d\n",a);			getpid(child)  for calling the parent part
+
+}
+}
+
+
+
+
+wait()      
+sleep()		
+orphen()
+zombie()
+
+
+
+
+   

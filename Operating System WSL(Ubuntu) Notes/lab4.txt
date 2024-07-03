@@ -1,0 +1,65 @@
+										System calls
+when we write the program in gcc then we have to call it through system call.
+syntax ?
+
+command
+=>  man(manual)		write
+
+=> we write code in "C" language
+=> For write command we use header file 
+
+ #include<unistd.h>
+int main(){
+
+}
+
+=>	we write on screen or on file 
+=>   ubuntu take everything/ read everything as a file.
+
+=>write(int fd,buf,size)
+
+paramters explanations					
+=>file discriptes(fd)		[0=>"keyboard",	1=>"for screen/showing output",		2=>"error"]         (built-in define)	//where read and where write ,where to write
+=>buf(buffer)			       small part of data of RAM in buffer that give data in a short time.			 // what is data	,	what to write
+=>size					       length of words,characters    which we are going to read					//size of write
+
+
+
+**********For writing and execution of the program****************
+(1)		nano news.c
+(2)		write code
+
+PROGRAMM
+ #include<unistd.h>
+int main(){
+write(1,"hello world",11);		//we are going to write on screen(1),msg	,  character of the msg
+}
+
+(3)		gcc new.c
+(4) 		./a.out
+
+**********For reading and execution of the program****************
+(1)		nano read.c
+(2)		read code
+
+PROGRAMM
+ #include<unistd.h>
+int main(){
+char buf[50];
+read(0,buf,20);		//we are going to write on screen(1),msg	,  character of the msg
+write(1,buf,20);
+}
+
+(3)		gcc new.c
+(4) 		./a.out
+
+
+
+
+
+
+
+
+
+
+

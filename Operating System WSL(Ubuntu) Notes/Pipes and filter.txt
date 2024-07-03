@@ -1,0 +1,49 @@
+Pipes (output of one process is used as input for another)
+used for inter-process communication
+Architecture used: Pipes and Filters
+
+one process uses a pipe to pass its data to other process.
+
+input --> filter --> pipe --> filter --> output
+
+sort command is practical example of this architecture.
+
+grep command is used apply filters.
+
+| sign for pipes
+
+
+cat filename | less (scroll through arrow) or more (scroll through enter key). // integrate pipelines
+
+cat filename | grep -i anyWord // filter file content based on anyWord.
+
+
+
+#include<stdio.h>
+#include<unistd.h>
+#include<sys/types.h>
+//                          (writing end of pipe) 1-------------0 (reading end)
+creating parent-child processes
+int fd[2]; // containing 1 and 0 for write and read
+int n;
+char buffer[20];
+Pid_t p;
+
+p = fork();
+if(p>0){
+prinf("parent will write on process");
+else
+{
+"child will read from process");}
+
+// write sys call
+write(fd[1], "data", 4);
+// read sys call
+n = read(fd[0],buffer,20);
+// writing on screen
+write(1,buffer,n);
+}
+
+
+
+

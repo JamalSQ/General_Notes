@@ -1,0 +1,48 @@
+HOW TO REMOVE THE VLAN
+
+
+//Remove Specific Vlan
+Command : 
+ (config)#no vlan 2			// 2 means second no vlan remove 
+(config)#sh flash				//show database of the vlan
+
+//Remove All Vlan in prevelidged mode
+Command:
+delete  ?			//give option
+delete vlan.dat		// get confirmation and then say yes and delete
+
+
+// For making Trunk   
+//why trunk   =>    for carring  the multiple switch lan's 
+			  =>	    instead using two switch using one switch by making two lan's in one switch of 						different network to connect
+
+switch(config)#interfac fa0/24
+switch(config)#switchport mode trunk		//only communicate within the its vlan
+
+
+
+
+
+
+//Router Work
+
+//For intering into preveliged  mode of the mode
+router>enable
+router# show  vlan      //this called preveliged mode    //only work in preveliged mode
+
+//For intering into configration mode of the mode
+router# config terminal 
+
+
+
+router(config-if)#int fa0/0		//entering into the fa0/1 mode
+router(config-if)#no shut		//entering into the fa0/1 mode	
+
+router(config-sub-if)#int fa0/0.1				//entering into sub fa0/0.1 mode
+router(config-sub-if)#encapsulation ?			//entering into the fa0/1 mode
+router(config-sub-if)#encapsulation dot 1Q 2	//label that tells which lan is communicating
+router(config-sub-if)#ip add 192.168.1.1    255.255.255.0			//give gateway id and subnet marks
+
+
+//For showing Ip's
+router#sh ip int br

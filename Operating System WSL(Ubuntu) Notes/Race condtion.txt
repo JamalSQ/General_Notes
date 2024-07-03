@@ -1,0 +1,51 @@
+Race Condition
+
+create race condition and then solve it using the samaphore 
+
+#include<unistd.h>
+#include<stdio.h>
+#include<pthread.h>
+
+void *fun1();
+void *fun2();
+
+int v_1=1;
+
+int main(){
+	pthread_t th1,th2;
+	pthread_create(&th1,NULL,fun1,NULL);
+	pthread_create(&th2,NULL,fun2,NULL);
+
+	//use join to for witing the termination of threads
+	
+	pthread_join(th1,NULL);
+	pthread_join(th2,NULL);
+	printf("The last value of  v_1 %d\n",v_1);
+
+}
+
+
+void *fun1(){
+	
+int a;
+a=v_1;
+a++;
+printf("The value of a %d \n",a); 
+sleep(1);
+v_1=a;
+printf("The value of thread 1 is  %d \n",v_1); //2
+
+}
+
+
+void *fun2(){
+	
+int b;
+b=v_1;
+b--;
+printf("The value of b %d \n",b); 
+sleep(1);
+v_1=b;
+printf("The value of thread 2 is  %d \n",v_1); //0
+
+}

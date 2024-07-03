@@ -1,0 +1,92 @@
+Pipes (output of one process is used as input for another)
+used for inter-process communication
+Architecture used: Pipes and Filters
+
+one process uses a pipe to pass its data to other process.
+
+input --> filter --> pipe --> filter --> output
+
+sort command is practical example of this architecture.
+
+grep command is used apply filters.
+
+| sign for pipes
+
+
+cat filename | less (scroll through arrow) or more (scroll through enter key). // integrate pipelines
+
+cat filename | grep -i anyWord // filter file content based on anyWord.
+
+
+ #include<stdio.h>
+#include<unistd.h>
+#include<sys/types.h>
+int main(){
+int fd[2];
+int n;
+char buffer[20];
+pid_t p;
+
+p = fork();
+if(p>0){
+printf("Parent will write on process\n");
+}else
+{
+printf("\nChild will read from process\n");
+}
+
+write(fd[1], "data", 4);
+
+n = read(fd[0],buffer,20);
+
+write(1,buffer,n);
+}
+
+
+
+
+
+
+//deadlock program
+
+#include<stdio.h>
+#include<pthread.h>
+#include<unistd.h>
+void *fun1();
+void *fun2();
+pthread_mutex_t first_mutex, second_mutex;
+int main()
+{
+        pthread_mutex_init(&first_mutex,NULL);
+        pthread_mutex_init(&second_mutex,NULL);
+        pthread_t T1, T2;
+        pthread_create(&T1, NULL, fun1, NULL);
+        pthread_create(&T2, NULL, fun2, NULL);
+        pthread_join(T1, NULL);
+        pthread_join(T2, NULL);
+        printf("Thread joined\n");
+}
+void *fun1()
+{
+        printf("T1 Trying to acquire first_mutex\n");
+        pthread_mutex_lock(&first_mutex);
+        printf("T1 acquired first_mutex\n");
+        sleep(1);
+        printf("T1 Trying to acquire second_mutex\n");
+        pthread_mutex_lock(&second_mutex);
+        printf("T1 acquired second_mutex\n");
+        pthread_mutex_unlock(&first_mutex);
+
+}
+void *fun2()
+{
+        printf("T2 Trying to acquire second_mutex\n");
+        pthread_mutex_lock(&second_mutex);
+        printf("T2 acquired second_mutex\n");
+        sleep(1);
+        printf("T2 Trying to acquire first_mutex\n");
+        pthread_mutex_lock(&first_mutex);
+        printf("T2 acquired first_mutex\n");
+        pthread_mutex_unlock(&second_mutex)
+
+

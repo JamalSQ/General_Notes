@@ -1,0 +1,64 @@
+1)simple  threads
+2) simple threads with parameters
+3) race condition
+4)race condition with solution of semaphre
+				
+
+															Solution of Race Condition using semaphre
+
+create race condition and then solve it using the samaphore 
+
+#include<unistd.h>
+#include<stdio.h>
+#include<pthread.h>
+#include<semaphore.h>
+
+void *fun1();
+void *fun2();
+
+int v_1=1;
+sem_t s;
+
+int main(){
+	sem_int(&s,0,1);			// 0 for thread, 1 for process
+	pthread_t th1,th2;
+	pthread_create(&th1,NULL,fun1,NULL);
+	pthread_create(&th2,NULL,fun2,NULL);
+
+	//use join to for witing the termination of threads
+	
+	pthread_join(th1,NULL);
+	pthread_join(th2,NULL);
+	printf("The last value of  v_1 %d\n",v_1);
+
+}
+
+
+void *fun1(){
+	
+int a;
+sem_wait(&s);
+a=v_1;
+a++;
+printf("The value of a %d \n",a); 
+sleep(1);
+v_1=a;
+printf("The value of thread 1 is  %d \n",v_1); //2
+sem_post(&s);
+
+}
+
+
+void *fun2(){
+	
+int b;
+sem_wait(&s);
+b=v_1;
+b--;
+printf("The value of b %d \n",b); 
+sleep(1);
+v_1=b;
+printf("The value of thread 2 is  %d \n",v_1); //0
+sem_post(&s);
+
+}

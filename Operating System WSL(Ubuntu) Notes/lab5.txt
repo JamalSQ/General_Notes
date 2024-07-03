@@ -1,0 +1,68 @@
+=>Read and Write through file is called open system call.
+
+Open system call parameters
+open(int fd, flags,mode)
+
+FD>
+File discriptor->write file name
+
+
+FLAGS=>
+ wnat to read or write
+Read-->	O_RDONLY
+Write-->	O_WRONLY
+Read,Write-->O_RDWR
+
+O_CREATE  |   O_WRONLY  ,  0642		=> 	When we want to create a file and then wanna write it.
+
+
+MOOD=>
+ 0642
+we use mode when we do not have file laready created
+
+
+We have to add these header file while writing the OPEN SYSTEM CALLS.
+
+************READ FROM KEYBOARD AND WRITE IN FILE*********
+#include <unistd.h>
+#include<sys/types.h>
+#include<sys/stat.h>
+#include<fcntl.h>
+int main(){
+
+char buf[30];
+int fd,n;
+
+n=read(0,buf,20);
+fd=open("file.txt",O_WRONLY);
+write(fd,buf,n);
+}
+
+
+************READ AND WRITE BOTH IN FILE FROM FILE*********
+
+#include <unistd.h>
+#include<sys/types.h>
+#include<sys/stat.h>
+#include<fcntl.h>
+
+int main(){
+
+char buf[30];
+int fd,fd1,n;
+
+fd=open("file.txt",O_RDONLY);
+read(fd,buf,20);
+fd1=open("new.txt",O_CREAT|O_WRONLY,0642);
+write(fd1,buf,n);
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,210 @@
+TOPICS:
+Static Ip's
+Dynamic Ip's
+
+
+steps:
+ip's assign
+no shut
+clock rate
+
+
+
+=>Connecting Two different network and then assigning that devices Ip's and network Ip's and Clock Rate(64000)
+
+						**********Router 1 ***********
+
+Router>en
+Router#config t
+
+Router(config)#int fa0/0											//Entering into fa0/0 mode
+Router(config-if)#ip add 192.168.1.1 255.255.255.0					//assigning Ip's to device
+Router(config-if)#no sh											//necessary when links are not up
+Router(config-if)#exit
+
+Router(config)#int se0/0											//Entering into se0/0 mode
+Router(config-if)#ip add 10.0.0.1 255.0.0.0							//assigning Network to device
+Router(config-if)#no sh											//necessary when links are not up
+Router(config-if)#clock rate 64000									//How much bits can be transfered from one network to other
+Router(config-if)#exit
+		
+					**********Router 2 ***********
+							//Same as Router 1
+
+Router>en
+Router#confi t
+
+Router(config)#int fa0/0
+Router(config-if)#ip add 192.168.2.1 255.255.255.0
+Router(config-if)#no sh
+
+Router(config-if)#int se0/0
+Router(config-if)#ip add 20.0.0.1 255.0.0.0
+Router(config-if)#no sh
+Router(config-if)#closk rate 64000
+Router(config-if)#exit
+										//when there are two port/network connected to a router
+Router(config)#int se0/1
+Router(config-if)#ip add 10.0.0.2 255.0.0.0
+Router(config-if)#no sh
+Router(config-if)#exit
+
+
+						**********Router 3 ***********
+								//Same as Router 1
+
+
+Router>en
+Router#config t
+
+Router(config)#int fa0/0
+Router(config-if)#ip add 192.168.3.1 255.255.255.0
+Router(config-if)#no sh
+Router(config-if)#exit
+
+Router(config)#int se 0/1
+Router(config-if)#ip add 20.0.0.2 255.0.0.0
+Router(config-if)#no sh
+Router(config-if)#exit
+
+
+
+
+
+
+******************************==========For Static Routing (without RIP command)===============***********************
+
+
+=>Commands for connecting the computers to the outside networks computers
+
+*****************For Router 1****************
+ip route  network  subnet  
+
+ip route 20.0.0.0  255.0.0.0  10.0.0.2
+ip route 192.168.2.0  255.255.255.0  10.0.0.2
+ip route 192.168.3.0  255.255.255.0  10.0.0.2
+
+Router(config)#do sh ip route
+Gateway of last resort is not set
+C    10.0.0.0/8 is directly connected, Serial0/0
+S    20.0.0.0/8 [1/0] via 10.0.0.2
+C    192.168.1.0/24 is directly connected, FastEthernet0/0
+S    192.168.2.0/24 [1/0] via 10.0.0.2
+S    192.168.3.0/24 [1/0] via 10.0.0.2
+
+
+**********For Router 2***********
+Router>
+Router>en
+Router#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+Router(config)#ip route destination  subnet_marks next_hop(from where the network is passing)  
+
+ 
+Router(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+Router(config)#ip route 192.168.3.0 255.255.255.0 20.0.0.1
+Router(config)#do show ip route
+
+
+
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    10.0.0.0/8 is directly connected, Serial0/1
+C    20.0.0.0/8 is directly connected, Serial0/0
+S    192.168.1.0/24 [1/0] via 10.0.0.1
+C    192.168.2.0/24 is directly connected, FastEthernet0/0
+S    192.168.3.0/24 [1/0] via 10.0.0.1
+
+
+*******************For Router 3*************
+Router>
+Router>
+Router>en
+Router#config t
+
+
+Router(config)#ip route 192.168.2.0 255.255.255.0 20.0.0.1
+Router(config)#ip route 10.0.0.0 255.0.0.0 20.0.0.1
+Router(config)#ip route 192.168.1.0 255.255.255.0 20.0.0.1
+
+
+Router(config)#do show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+S    10.0.0.0/8 [1/0] via 20.0.0.1
+C    20.0.0.0/8 is directly connected, Serial0/1
+S    192.168.1.0/24 [1/0] via 20.0.0.1
+S    192.168.2.0/24 [1/0] via 20.0.0.1
+C    192.168.3.0/24 is directly connected, FastEthernet0/0
+
+
+
+
+******************************==========For Dynamic Routing (Using RIP command)===============***********************
+
+Distance vector
+RIP			
+IGRP
+
+
+=>Every router share its routing table to its neigbour(directly conected) router and other router share that table untill 15 hops
+RIP works on hope on (share 3)
+16 infinite/ unreachable
+share/advertise table after every 30 sec   also said rumer
+not good at ->large networks and large sharing bandwidth
+RIPv1=>support classfull routing
+RIPv2=>support classless routing
+
+
+
+
+
+Router#1
+
+Router>en
+Router#config te
+Router(config)#router rip
+Router(config-router)#network 192.168.1.0
+Router(config-router)#network 10.0.0.0
+Router(config-router)#exit
+Router(config)#do show ip route
+
+Router#2
+
+Router(config)#
+Router(config)#router rip
+Router(config-router)#network 192.168.2.0
+Router(config-router)#network 10.0.0.0
+Router(config-router)#network 20.0.0.0
+Router(config-router)#exit
+Router(config)#do sh ip route
+
+
+Router#3
+
+
+Router(config)#
+Router(config)#
+Router(config)#router rip
+Router(config-router)#network 192.168.3.0
+Router(config-router)#exit
+Router(config)#do sh ip route
+
+

@@ -1,0 +1,15 @@
+Routing two types
+
+for comunicating world wide we use router.
+
+
+we have to add manually module to router wic-1t
+
+
+
+Dynamic 
+	
+	
+
+
+Static

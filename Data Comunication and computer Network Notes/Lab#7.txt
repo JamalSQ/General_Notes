@@ -1,0 +1,47 @@
+Distance vector
+RIP			
+IGRP
+
+
+=>Every router share its routing table to its neigbour(directly conected) router and other router share that table untill 15 hops
+RIP works on hope on (share 3)
+16 infinite/ unreachable
+share/advertise table after every 30 sec   also said rumer
+not good at ->large networks and large sharing bandwidth
+RIPv1=>support classfull routing
+RIPv2=>support classless routing
+
+
+
+Dynamic Routing
+
+Router#1
+
+Router>en
+Router#config te
+Router(config)#router rip
+Router(config-router)#network 192.168.1.0
+Router(config-router)#network 10.0.0.0
+Router(config-router)#exit
+Router(config)#do show ip route
+
+Router#2
+
+Router(config)#
+Router(config)#router rip
+Router(config-router)#network 192.168.2.0
+Router(config-router)#network 10.0.0.0
+Router(config-router)#network 20.0.0.0
+Router(config-router)#exit
+Router(config)#do sh ip route
+
+
+Router#3
+
+
+Router(config)#
+Router(config)#
+Router(config)#router rip
+Router(config-router)#network 192.168.3.0
+Router(config-router)#exit
+Router(config)#do sh ip route
