@@ -1,0 +1,118 @@
+STEP 1:
+		=>git init			//initialize the .git folder in the project  folder the folder is hidden if you want to see then you have to check the show hidden files
+
+STEP 2:
+
+	Add a username and  email
+
+	=>git config --global user.name 'jamal siddique qadri'
+	=>git config --global user.email  'qadrij688@gmail.com'
+	=>git config --list			//show the username and email
+
+STEP 3:
+
+	for adding our files to the (git repository/staging area) we have to use this command
+	
+	=>git add filename.html	//it only adds one specific file to the staging area.
+	=>git add *.html			//it adds all the html files to the staging area
+	=>git add  .					//it adds all the files to the staging area
+
+	if we want to see what happens with the above command we use this
+	=>git status	//it tells whether it is added to the git repository or not
+
+STEP 4:
+	if want to remove the file from the staging area then use this 
+	=>git rm --cached filename.html
+
+after that use =>git status 		//for cheking the file status
+
+STEP 5:
+
+After this commit the files if anything changes to any file then add that file again or you can do this 
+
+	=>git add .			//to add all the files to the staging area
+	=>git commit		//it opens the Vim editor and then clicks "i" to enter the insert mode and write whatever you want. after that click the "ESC" button to escape from the insert and then write ":wq" to come out of the editor
+Alternatively, you can use this:
+
+	=>git commit -m "initial commit" 	//m means the message
+
+
+STEP 6:
+
+	=>git branch branch_name(login)
+	
+	every branch has its file if the master branch has 5 files and the login branch has 8 files then when you are in the master branch you only see 5 files but when you switch/checkout to the login branch you see 8 files.
+	for switching branches 
+
+	=>git checkout branch_name
+
+if you want to merge the branches then go to the master branch and use this command
+
+	=> git merge branch_name  	//the branch name you are merging the master branch
+
+
+STEP 7:
+
+	now add the committed files to the remote repository of the GitHub
+	=>git remote add origin  you_repository_link
+	=>git remote		//tells all the remote files 
+	=>git remote -v		//tells all the remote files 
+
+STEP 8:
+
+	now to push all the files to the GitHub remote repository at the origin
+	=>git push -u origin master
+
+STEP 9:
+	=>git pull		//it fetches all the latest data from the GitHub repository to our remote repository.
+
+STEP 10:
+	=>git clone  project_link		//it clones all the projects to the specified folder.
+
+
+********general info********
+
+ls		//show us all the fiels
+ls -a 	//show also the hidden files
+
+=> git branch --set-upstream-to <remote-branch>
+
+
+**Setting up SSH keys**
+
+=>ssh-keygen -t ed25519 -C "any name mostly use email"
+=>ssh-keygen -f key_path -t ed25519 -C "any name mostly use email"
+
+=>ssh -T git@github.com
+
+
+
+**At Repository Creation at github******
+
+…or create a new repository on the command line
+echo "# dummy1" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/JamalSQ/dummy1.git
+git push -u origin main
+
+
+
+…or push an existing repository from the command line
+git remote add origin https://github.com/JamalSQ/dummy1.git
+git branch -M main
+git push -u origin main
+
+
+
+
+
+
+
+
+
+
+
+
