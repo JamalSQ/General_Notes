@@ -1,0 +1,7 @@
+Steps to download linux in simple way
+
+=>open cmd as administrator
+=>wsl -- install
+=>wsl --install -d ubuntu
+
+WSL stand for windows system Linux
