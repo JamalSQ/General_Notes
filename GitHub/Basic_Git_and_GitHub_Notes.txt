@@ -109,6 +109,13 @@ git push -u origin main
 
 
 
+**if we want to insert a file in the git object-databse then we can use hash**
+
+
+=>git hash-object src/main.cpp -w
+
+if want to see what is written in the file then use this 
+=>git cat-file blob hashName_of_the_file
 
 
 

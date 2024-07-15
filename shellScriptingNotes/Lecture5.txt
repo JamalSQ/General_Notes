@@ -1,9 +1,113 @@
-Lecture#4:
+Lecture#5:
 
-Command Line Environment:
+# Command Line Environment:
 
 
-Job Control
-Terminal Multiplexers
-Dot files
-Remote machines
+## Job Control
+## Terminal Multiplexers
+## Dot files
+## remote machines
+
+
+************************Job Control************************
+
+
+=> Sleep 20 		//it will stop the program for 20 seconds
+=>sigInt	Ctr+c	//it will interrupt the current program and terminate that program 		//full form single interrupt
+=>sigquit	Ctr+\	//it will interrupt the current program and terminate that program 		//full form single quite
+You can see all the signal commands using the below command
+=>man signal
+
+=>Ctrl+z			//it will pause the current program and let you run another program. the program is not terminated, it is in the background and still can run when starts.
+
+=>nohup sleep 2000 & 		//it will start this program in the background and does not take over your prompt, it will let you perform other tasks.
+=>jobs						//it will show all the processes running in the background wheather they are suspended, child, orphaned, or parent programs.
+=>bg %1					//if you want to resume the program that was suspended use this command the bg stands for background and %1 means the program that is at index 1. 
+=>FG %1					//it will fetch the process that is running in the background to the foreground.
+=>kill -STOP %1				//if you resume the program and now again want to stop it then use this command %1 means the index of the program that you want to stop.
+=>kill -HUP %2				//It will cause the program to hang, and even after closing the terminal, it will continue running in the background.
+=>kill -KILL %1				//it will kill the program at index 1 no matter what.
+
+
+
+************************Terminal Multiplexer(Tmux)************************
+
+## session -> have-> windows-> have->panes
+
+=>tmux		//it opens another program that is different from the original shell process.
+=>sleep 200	//it will run the program that sleeps for 200 seconds.
+=>Ctrl + b, then d 	//it will detach the program
+=>tmux a			//it will again attach the program
+
+if we want to start a new session and want to give it a name use this command
+=>tmux new -t name
+=>Ctrl+b then c			//to open the new window in the current tmux session
+=>Ctrl+b then p		//go to the previous window
+
+=>Ctrl+b then " 		//to split the window into two panes one above one below
+=>Ctrl+b then %		//to split the window into two panes one on the left and one on the right
+=>Ctrl+b then space 	//it let you change the layouts of the panes.
+=>htop					//This command works like a task manager, showing you all the details.
+
+Split the Window:
+
+Split horizontally: Ctrl + b, then %
+Split vertically: Ctrl + b, then "
+
+Navigate Between Panes:
+
+Switch to the next pane: Ctrl + b, then o
+Move to the pane on the left: Ctrl + b, then Left Arrow
+Move to the pane on the right: Ctrl + b, then Right Arrow
+Move to the pane above Ctrl + b, then Up Arrow
+Move to the pane below: Ctrl + b, then Down Arrow
+
+Resize Panes:
+
+Resize horizontally: Ctrl + b, then <Ctrl + Arrow Left/Right>
+Resize vertically: Ctrl + b, then <Ctrl + Arrow Up/Down>
+
+
+************************Dot files************************
+
+=>alias ll="ls -lah"		//	ll is the name that you want to give to your command and  	ls -lah   is the command 
+=>alias mv="mv -i"		//when we are moving the file the mv just moves the file and overwrites on the target file but with i the system will ask wheather to overwrite or not 
+=>alias mv				//it will show us the alias of that command
+
+
+
+=>vim ~/.bashrc		//Write all the aliases over these and then use it as you wish
+
+NOTE: Review it again for a better understanding
+
+
+************************Remote Machines************************
+
+=>ssh root@123.23.23.43			//ssh is the secure shell that we use to connect to the remote machine and then the root is the name of the user and after @ it is the name of the remote website on a server that we are accessing.
+
+=>ssh-keygen -o -a 100 -t ed25519		//it will create an ssh public private key to your .ssh folder in your machine.
+=>scp notes.md root@123.23.23.43:notesfile.md			//it will copy the notes.md file from the local machine and then paste it on the remote server with the name notesfile.md , if there is any interrupt then the SCP will start copying the file from the start.
+=>rsync -avp .  root@123.23.23.43:cmd				//here we are copying the entire folder from the local machine to the server but using rsync. The advantage is that it will resume the copying file if there are any interrupts while copying.
+
+
+
+***configuration that you do not have to do all the time***
+
+Host vm
+User root
+HostName  123.23.23.43
+IdentityFile ~/.ssh/id_ed25519
+RemoteForward  9999 localhost:8888
+
+
+
+
+
+
+
+
+
+
+
+
+
