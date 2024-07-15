@@ -1,0 +1,9 @@
+Lecture#4:
+
+Command Line Environment:
+
+
+Job Control
+Terminal Multiplexers
+Dot files
+Remote machines

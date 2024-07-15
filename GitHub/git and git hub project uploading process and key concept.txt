@@ -1,0 +1,32 @@
+
+when we clone a project, it not only clones the project files but also the commits and the main branch to your local system.
+
+git add .	
+git commit 	-m  "files added"
+git branch Jamal			//it will make a branch name Jamal
+
+Till this step, your code files are already on the local Jamal branch
+
+
+local(Jamal)
+git push origin Jamal		//it will make a new remote branch with the same name as your local branch(Jamal), if it does not already exist, and then push all files from the local Jamal branch to the remote Jamal branch.
+
+Now all the code files are on the remote Jamal branch, we want to push them into the remote main branch the process is as follows.
+
+local(Jamal)
+git fetch origin		//it will download all the code files that are on the remote main repository without merging them to our local branch.
+
+Now checkout to your local main branch
+
+local(Jamal)
+git checkout main	
+
+local(main)
+git merge Jamal		//it will merge your local branch Jamal and local branch main  there may be some conflict so you have to resolve them manually using your text editor
+
+
+Now the local main branch has all the changes that made in jamal branch so now to push the local main branch files to the remote main branch files we have to follow this process.
+ 
+local(main)
+git push origin main
+

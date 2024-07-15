@@ -1,0 +1,131 @@
+Lecture#2:
+
+making variables in shell
+	=>foo=bar		//foo is a variable and bar is the value that is in it.
+	=>echo $foo 	//if want to print the value of the variable then put $ sign before the variable.
+
+
+**it is a user-defined function that accepts one argument **
+=>  mcd () {
+   	 mkdir -p "$1"
+    	cd "$1"
+	}
+
+|| 		Let you execute a command only if the previous command fails.
+&&		let you execute a command only if the previous command succeeds.
+;		Simply separate commands and execute them one after the other.
+
+**Make any file and then write this code with .sh extension     sh means shell scripting
+
+#!/bin/bash
+
+echo "Starting program at $(date)" # Date will be substituted
+
+echo "Running program $0 with $# arguments with pid $$"
+
+for file in "$@"; do
+    grep foobar "$file" > /dev/null 2> /dev/null
+    # When the pattern is not found, grep has exit status 1
+    # We redirect STDOUT and STDERR to a null register since we do not care about them
+    if [[ $? -ne 0 ]]; then
+        echo "File $file does not have any foobar, adding one"
+        echo "# foobar" >> "$file"
+    fi
+done
+
+
+Explanation:	The above program gets the file name as arguments where it find the foobar if exit then leave the file as it is if not then add the #foobar at the end of the file.
+
+=>find . -name folderName -type d			// . means current directory and -name,-type is a flag and d means a type of directory. 	
+
+**for finding the files that we modify**
+=>find . -mtime -1		//it will give us all the files that were modified one day ago,  if type -2 means two days ago
+
+**If want to remove some specific file then **
+=>find . -name "*.tmp" -exec rm {} \;		//it will delete all the files in the current directory which has extension   .tmp
+=>find . -name "*.tmp" -print				//it will print the paths of the searched files
+
+**If want to locate any file in the system **
+=>locate file.txt
+
+
+**If you  want to search in the whole directory **
+=>rg "import requests" -t py directory_path
+
+**If you want to search for a file that is hidden in the whole directory **
+=>rg -u --files-without-match "^#\!" -t sh
+
+** If you want to get the context of 5 lines around that **
+=>-t py -C 10 directory_path
+
+**If you want to find some text in the file then use the grep command**
+=>grep word file.txt
+
+**If want to check all the commands that you run till the current command **
+=>history
+
+**If want to find the command which has the word "find" **
+=>history | grep find
+
+**If you press CTRL+R , after what you type it will search from the history and then show you the command in which those words come **
+
+=>CTRL+R    then write the keyword
+
+**Search the file by name **
+=>find -name fileName.txt
+
+**Search the file by Extension**
+= find . -type f -name "data.txt"
+
+**Search the file by printing them on screen and then write a keyword to filter where that keyword is written  using "fzf" **
+=>cat ls.txt | fzf
+
+
+**if you want to see all the files and folders under the current folder then **
+=>ls -R		//R means recursively
+
+**if you want to see all the files and folders under the current folder in the form of tree then **
+=>tree	
+
+**if you want to see all the files and folders under the current folder in the form of the tree but efficiently then **
+=>broot
+=>nnn		it is also similar to tree, broot , and ls -R
+
+
+
+Exercise:
+
+Question1:
+=>ls -al --color=always -h --sort=mtime:reverse
+
+Explanation:
+-a: This includes all files, including hidden files that start with a dot (.).
+-l: This provides a long listing format, displaying file permissions, owner, group, size, and modification time for each file.
+--color=always: This enables colorized output for easier differentiation between file types (directories, executables, etc.). This might require your terminal to support colors.
+-h: This displays file sizes in human-readable format (e.g., 454M instead of bytes).
+--sort=mtime:reverse: This sorts the file listing by modification time (mtime) in reverse order, showing the most recently modified files first.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

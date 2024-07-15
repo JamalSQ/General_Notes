@@ -1,0 +1,59 @@
+
+sudo apt update
+Install Nginx
+sudo apt install nginx
+Install MySql
+sudo apt install mysql-server
+sudo apt install php-mbstring php-xml php-bcmath php-curl
+Install Composer
+sudo apt install php-cli unzip
+sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+Install Laravel Dependencies
+sudo apt install php-mbstring php-xml php-bcmath
+Create Database
+sudo mysql
+CREATE DATABASE laraveldatabase;
+CREATE USER 'laraveldatabase_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT ALL ON laraveldatabase. TO laraveldatabase_user'@'%';
+mysql -u laraveldatabase_user -p
+SHOW NATARASES.
+
+
+
+
+composer install
+create .env
+File Permissions
+sudo chown -R $USER:www-data.
+sudo find. -type f -exec chmod 664 {} \; sudo find. -type d -exec chmod 775 {} \;
+sudo chgrp -R www-data storage bootstrap/cache sudo chmod -R ug+rwx storage bootstrap/cache
+Nginx Configuration
+sudo nano /etc/nginx/sites-available/default
+server {
+listen 80;
+server_name server_domain_or_IP;
+root /var/www/travellist/public;
+add_header X-Frame-Options "SAMEORIGIN"; add_header X-XSS-Protection "1; mode-block"; add_header X-Content-Type-Options "nosniff";
+index index.html index.htm index.php;
+charset utf-8;
+
+
+
+
+sudo nano /etc/nginx/sites-available/default
+server {
+listen 80;
+server_name server_domain_or_IP; root /var/www/travellist/public;
+add_header X-Frame-Options "SAMEORIGIN"; add_header X-XSS-Protection "1; mode-block"; add_header X-Content-Type-Options "nosniff";
+index index.html index.htm index.php;
+charset utf-8;
+location / {
+try_files $uri Suri//index.php?query_string;
+location /favicon.ico (access_log off; log_not_found off; } location - /robots.txt (access_log off; log_not_found off;
+error page 404 /index.php;
+location ~ \.php$ {
+fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+fastcgi_index index.php;
+fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name; include fastcgi_params;
+location ~ /\.(?lwell-known).* {
+deny all;

@@ -1,0 +1,32 @@
+						**Shell Scripting Lecture by Simple Learn**
+
+Lecture#1:
+
+	=>date			//give us the current date
+	=>echo 		//print the argument that we give it to the echo command
+	=>echo $PATH		//it prints all the path from which our shell see and  execute the command
+	=>pwd 				//print working directory
+	=>cd ..				// two dots show the or navigate to the parent directory
+	=>cd . 				//One dot is telling that it is the current directory
+	=>ls 				//give us the list of the current directory
+	=>ls -l /home		//it will show the details of the home directory
+	=>man command(ls)		// it gives us the manual of the command 
+	=>cat hello 			// it will print the content if no file name is given as an argument 
+	=>cat < hello.txt	//it will get the input from the hello.txt and then give output to the screen means print it
+	=>cat <hello.txt >news.txt		//Now the hello.txt is an input stream and cat will give its input as output to the news.txt file 
+	=>cat <hello.txt >>news.txt		//Now the hello.txt is an input stream and cat will provide its input as output to the news.txt file, it lets the remaining content as it is and also appends the given input to the news.txt file
+	=> pipe symbol ( | ) 		//  it gets the output from the left program(not the file) and then gives input to the program that is on the right side
+	=> ls -l | tail  -n 		//Now there are two programs one on the left and one on the right side of the pipe symbol. The left program gives an output of all the current directory files to the right side program, the right side
+gets it as input and then just prints the last line. from tail means from the end of output and how many lines -n1 it shows one line if write -n5 it gives output as last five lines of the given input.
+	=>echo 500 | sudo tee file		//tee write the getting input into the file and also on the screen.
+
+
+Single Quotes:  Characters within single quotes are treated literally.  Bash interprets them exactly as you typed them, regardless of their usual meaning in commands. This includes special characters like spaces, dollar signs ($), asterisks (*), etc.
+
+Double Quotes:  Characters within double quotes are generally interpreted literally, but some special characters have a special meaning:
+
+Variable Expansion: Double quotes allow for variable expansion. If a dollar sign ($) is followed by a variable name within double quotes, Bash will replace it with the value of that variable.
+Escape Sequences: Certain backslash () combinations within double quotes have special meanings. For example, \n represents a newline character, \t represents a tab character, etc.
+
+
+

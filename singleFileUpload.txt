@@ -1,0 +1,68 @@
+ public function multi_files_uploads($key, $type, $user_id)
+{
+    $uploadDir = FCPATH . 'public/documents/'; // Ensure this path exists and is writable
+    $documents = [];
+
+    // Check if file is set
+    if (isset($_FILES[$key])) {
+        $file = $_FILES[$key];  // Get the file from the key
+        
+        $fileName = basename($file['name']);
+        $fileTmpPath = $file['tmp_name'];
+        $fileError = $file['error'];
+        $fileSize = $file['size'];
+
+        // Generate a unique file name
+        $uniqueName = uniqid() . '_' . $fileName;
+
+        // Target file path
+        $targetFilePath = $uploadDir . $uniqueName;
+
+        if ($fileError === UPLOAD_ERR_OK) {
+            // Move the uploaded file
+            if (move_uploaded_file($fileTmpPath, $targetFilePath)) {
+                // Get file extension
+                $parts = explode('.', $uniqueName);
+                $extension = end($parts);
+
+                // Document info
+                $document = [
+                    'user_id' => $user_id,
+                    'name' => $uniqueName,
+                    'type' => $extension,
+                    'url' => base_url() . 'public/documents/' . $uniqueName,
+                    'ID_type' => $type,
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s")
+                ];
+
+                // Save document information to the database
+                $id = $this->User_model->save_document($document);
+
+                // Prepare the document info for response
+                $documents = [
+                    'name' => $uniqueName,
+                    'id' => (string)$id,
+                    'doc_url' => base_url() . 'public/documents/' . $uniqueName,
+                ];
+            } else {
+                // Error handling for file upload
+                $documents = [
+                    'name' => $fileName,
+                    'error' => 'Error moving file: ' . $fileName
+                ];
+            }
+        } else {
+            // Handle errors
+            $documents = [
+                'name' => $fileName,
+                'error' => 'Upload error: ' . $fileError
+            ];
+        }
+    } else {
+        $documents = ['error' => 'No file selected'];
+    }
+
+    return $documents;
+}
+C:\xampp\htdocs\filedesign.php
