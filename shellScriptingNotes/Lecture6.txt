@@ -66,16 +66,14 @@ git pull		==		git fetch    and     git merge
 
 
 git clone --shallow		//this command will clone all the data files but not the history of the commits or anything related to it.
+git add -p .			//it will ask you what you want to add and which part does not 
+git blame  <filepath>		//it will tell who and when and where the changes were made in the file 
+git show <commit-hash>	//it will show the information related to that commit
 
+git stash 		// it will revert my pointer to the last commit i do 
+git stash pop		// it will again point to where i was before.
 
+git bisect		//it is used to track where my unit test stops working, it is an automated checking process, not manual one.
 
+1 hour and 20 mnt video
 
-
-
-
-
-
-
-
-
-55 mnts
