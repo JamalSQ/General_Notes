@@ -1,5 +1,10 @@
 Lecture#2:
 
+
+NOTE::  For better understanding review this link
+			https://missing.csail.mit.edu/2020/shell-tools/
+		
+
 making variables in shell
 	=>foo=bar		//foo is a variable and bar is the value that is in it.
 	=>echo $foo 	//if want to print the value of the variable then put $ sign before the variable.

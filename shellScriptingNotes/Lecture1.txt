@@ -1,5 +1,9 @@
 						**Shell Scripting Lecture by Simple Learn**
 
+NOTE::  For better understanding review this link
+			https://missing.csail.mit.edu/2020/course-shell/
+	
+
 Lecture#1:
 
 	=>date			//give us the current date

@@ -1,5 +1,9 @@
 Lecture#5:
 
+NOTE::  For better understanding review this link
+			https://missing.csail.mit.edu/2020/command-line/
+		
+
 # Command Line Environment:
 
 

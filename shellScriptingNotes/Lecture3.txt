@@ -1,5 +1,9 @@
 Lecture#3:
 
+NOTE::  For better understanding review this link
+			https://missing.csail.mit.edu/2020/editors/
+		
+
 Vim Editor fundamentals
 
 NOTE:All of the below commands will work when you are in Normal mode:
