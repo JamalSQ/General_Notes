@@ -1,0 +1,28 @@
+Lecture#6:
+
+# Git and GitHub
+
+git init
+git add .
+git commit -m "message"
+git cat-file -p hash_of_commit			//this will tell you all the information about that commit that you did the hash we write is the commit and it will give us the hash of the tree
+git cat-file -p hash_of_tree				//this will tell us all the information about the tree like a blob, its hash, and the file it has, and it will give us the hash of the blob so that we can go in an in-depth search
+git cat-file -p hash_of_blob				//this will tell us all the information about that blob like its file content.
+git commit -a 							//it will commit all the modified files, not the new files without using the git add command.
+git add :/								//it will add all the files and folders from your root directory where git was initialized.
+git log 									// It will give us all the history of the commits, but not in a graphical way.
+git log --all --graph --decorate			//it will give us the history of the commits we made in the form of a tree.
+
+git log --all --graph --decorate --online	//it will give us the history of the commits we made in a more representable and readable way.
+git diff index.php						//shows what changes have been made since the last snapshot(commit)
+git diff 34dsfsdff65 index.php			//Now it will show what changes have been made since this 34dsfsdff65 snapshot(commit)
+
+git diff 34dsfsdff65 HEAD index.php		//It will show what I changed in my file index.php since this snapshot 34dsfsdff65(old commit) to Head (Currently updated commit)
+
+git branch 						//it shows the list of all the branches
+git branch -vv					//it shows more information about the branches
+git branch name				//it will create a branch with the name "name"
+
+
+
+
