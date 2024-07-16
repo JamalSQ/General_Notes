@@ -23,6 +23,6 @@ git branch 						//it shows the list of all the branches
 git branch -vv					//it shows more information about the branches
 git branch name				//it will create a branch with the name "name"
 
-
-
+git checkout -b "new branch"		//it will create the new branch and also checkout that branch.
+		
 
