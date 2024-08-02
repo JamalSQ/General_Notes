@@ -73,7 +73,7 @@ git show <commit-hash>	//it will show the information related to that commit
 git stash 		// it will revert my pointer to the last commit i do 
 git stash pop		// it will again point to where i was before.
 
-git bisect		//it is used to track where my unit test stops working, it is an automated checking process, not manual one.
+git bisect		//it is used to track where my unit test stops working, it is an automated checking process, not a manual one.
 
-1 hour and 20 mnt video
+.gitignore		//it is the file where you specify which files and folders or files with the specific extension you want to ignore when adding to the staging area.
 

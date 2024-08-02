@@ -1,0 +1,11 @@
+Lecture#7:
+
+# Debugging and Profiling
+
+NOTE::  For better understanding review this link
+			https://missing.csail.mit.edu/2020/debugging-profiling/
+		
+
+
+
+

@@ -1,0 +1,20 @@
+For making a crone job the process is as follows:
+
+Enter the server using your credentials then use this command
+
+First, check:
+
+=>which crone				//this will tell you the path (/usr/bin/curl) copy that path and paste it into the next command that is mentioned
+=>crontab -e 			//it will open a file with some text that will be commented write this command at the end of the file 
+
+Syntax:
+=>	* * * * * /usr/bin/curl -s Command/URL
+
+For example: 
+=>	* * * * * /usr/bin/curl -s http://64.210.13.241/folder_name/file_name/function_name
+instead of this (http://64.210.13.241/folder_name/file_name/function_name) there may be any other command that you want to run after specific time like print "hello world"; etc
+
+Now the crone job is established it will execute it after every minute
+
+NOTE:
+if you do not understand the above command then search for it, especially the stars.
