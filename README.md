@@ -4,4 +4,5 @@
 ## shell scripting
 ## Digital Ocean server
 ## Cron job on Linux server
-## Basic Git and GitHub Notes
+## Operating system
+## Data communication and computer networks
