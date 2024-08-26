@@ -1,0 +1,32 @@
+Lecture#4:
+
+
+NOTE::  For better understanding review this link
+			https://missing.csail.mit.edu/2020/data-wrangling/
+		
+
+Data Wrangling:
+
+=>cat ssh.log |  sed 's/.*Disconnected from //' | less
+in the above command we are searching the text "Disconnected from" and then giving to less that will print on the screen.
+
+=>echo 'bba' | sed 's/[ab]//'		//s means substitute and it is used for text manipulation. it replaces the character whatever is found first with space.
+
+=>echo 'bba' | sed 's/b/c/'		//This will output "bca", as it replaces the first occurrence of "b" with "c" in the string "bba".
+
+
+****if we want that it to replaces all the characters whenever that character is found then use G at the end****
+
+=>echo 'bba' | sed 's/[ab]//g'	
+
+=>echo 'i love my var' | sed -E 's/(var)+/car/g'   this will change the every var with the car.
+=>'.*/pattren//g'			//it is a greedy search it will search as much away as possible
+=>'.*?/pattren//g'			//but if we put the ? before the * it will make it non-greedy.
+
+=>sort 						//it sorts the given data
+=>wc						//gives the word count
+=>unique -c				//it gives the unique output of given data and -c means count the duplicate and print the number.
+
+=>cat ssh.log | sed -E 's/^.*Disconnected from (invalid | authenticating ) ?user (.*) [0-9.]+ port [0-9]+(\[preauth\])?$/\2/' | sort | unique -c | awk '$1 != 1 {print $1 } ' | paste -sd+ | bc -l
+
+

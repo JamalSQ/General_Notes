@@ -1,0 +1,79 @@
+Lecture#6:
+
+# Git and GitHub
+
+NOTE::  For better understanding review this link
+			https://missing.csail.mit.edu/2020/version-control/
+		For hand on practice use this like (recommended)
+			https://learngitbranching.js.org/
+
+
+
+
+git init
+git add .
+git commit -m "message"
+git cat-file -p hash_of_commit			//this will tell you all the information about that commit that you did the hash we write is the commit and it will give us the hash of the tree
+
+print pretty  				-p
+give the type of the hash    --t
+give the size of the hash	-s		//This command is typically used to inspect the size of various Git objects such as commits, trees, blobs (files), or tags.
+
+git cat-file -p hash_of_tree				//this will tell us all the information about the tree like a blob, its hash, and the file it has, and it will give us the hash of the blob so that we can go in an in-depth search
+git cat-file -p hash_of_blob				//this will tell us all the information about that blob like its file content.
+git commit -a 						       //will commit all the modified files, not the new files without using the git add command. -a flag stands for "all"
+git add :/								//will add all the files and folders from your root directory where git was initialized.
+git log 									// It will give us all the history of the commits, but not in a graphical way.
+git log --all --graph --decorate			// it will give us the history of the commits we made in the form of a tree.
+git log --all --graph --decorate --online	//it will give us the history of the commits we made in a more representable and readable way.
+git diff index.php						//shows what changes have been made since the last snapshot(commit)
+git diff 34dsfsdff65 index.php			//Now it will show what changes have been made since this 34dsfsdff65 snapshot(commit)
+
+git diff 34dsfsdff65 HEAD index.php		//It will show what I changed in my file index.php since this snapshot 34dsfsdff65(old commit) to Head (Currently updated commit)
+
+git branch 						//it shows the list of all the branches
+git branch -vv					//it shows more information about the branches
+git branch name				//it will create a branch with the name "name"
+
+git checkout -b "new branch"		//it will create and checkout the new branch.
+
+the branch you want to merge checkout to that branch and then hit the following command
+git merge branch_name			//Now the current branch has the data of both branches itself and also the other branch that you just merged.
+		
+
+git merge --abort 			//it will abort the merge that was heppanig.
+git merge --continue		//it will continue merging the branches.
+
+
+git push <remote > <local branch name>:<remote branch>
+git push origin jamal:main		//it will push my local branch name "jamal" to the remote repository called "main"
+git clone <url of the repository you want to clone>   <the path where you want to clone>
+
+git branch --set-upstream-to=origin/master			//now you current branch will start pushing all the files to the branch that you just specified, now you do not need to do like git push origin jamal:main you just write the following command and that's it 
+
+git push 		//this will push automatically to the remote branch that you just specified.
+
+
+git fetch <remote branch name>		//it will fetch all the updated data from the remote to your machine but not merge with your local branch. your local branch will point where it was pointing before.
+git pull 									//it will fetch all the updated data from the remote to your machine and also merge with your local branch(currently you are in). your local branch will start point where the main branch was pointing.
+now for merging the local branch and the files that were fetched use this command
+git merge 
+
+
+
+git pull		==		git fetch    and     git merge
+
+
+
+git clone --shallow		//this command will clone all the data files but not the history of the commits or anything related to it.
+git add -p .			//it will ask you what you want to add and which part does not 
+git blame  <filepath>		//it will tell who and when and where the changes were made in the file 
+git show <commit-hash>	//it will show the information related to that commit
+
+git stash 		// it will revert my pointer to the last commit i do 
+git stash pop		// it will again point to where i was before.
+
+git bisect		//it is used to track where my unit test stops working, it is an automated checking process, not a manual one.
+
+.gitignore		//it is the file where you specify which files and folders or files with the specific extension you want to ignore when adding to the staging area.
+
